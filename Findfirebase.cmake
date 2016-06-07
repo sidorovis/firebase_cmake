@@ -104,8 +104,8 @@ foreach(component ${firebase_FIND_COMPONENTS})
     set(firebase_${component}_LIBRARIES ${component}-NOTFOUND)
 
     find_path(firebase_${component}_INCLUDE_DIRS
-		NAMES "${component}.h"
-		HINTS "${firebase_root}/include/firebase")
+		NAMES "firebase/${component}.h"
+		HINTS "${firebase_root}/include/")
 
     find_library(firebase_${component}_LIBRARIES
 		NAMES "${component}"
