@@ -1,9 +1,9 @@
-firebase_cmake
---------------
-
+# firebase_cmake
 CMake Finder module for Firebase (http://firebase.google.com/)
 
-# Requirements:.
+--------------
+
+# Requirements:
 
 1. firebase_ROOT (FIREBASE_ROOT also acceptable) for example: set(firebase_ROOT ~/firebase_cpp_sdk);
 OR.
@@ -28,6 +28,7 @@ OR.
 2. analytics
 
 Usage examples from your CMake code:
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/firebase_cmake")
-find_package(firebase QUIET REQUIRED COMPONENTS app analytics)
-target_link_libraries(${project_name} firebase)
+
+> set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/firebase_cmake")
+> find_package(firebase QUIET REQUIRED COMPONENTS app analytics)
+> target_link_libraries(${project_name} firebase)

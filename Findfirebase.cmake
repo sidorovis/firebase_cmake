@@ -1,7 +1,7 @@
 #
 # This is a CMake finder module for Firebase project (http://firebase.google.com/)
 #
-# Requirements: 
+# Requirements:
 # 1. firebase_ROOT (FIREBASE_ROOT also acceptable) for example: set(firebase_ROOT ~/firebase_cpp_sdk);
 # OR 
 # 2. environment variable FIREBASE_ROOT should exists.
@@ -115,6 +115,8 @@ foreach(component ${firebase_FIND_COMPONENTS})
 	message(STATUS "Firebase ${component} header path: '${firebase_${component}_INCLUDE_DIRS}'")
 	message(STATUS "Firebase ${component} libraries: '${firebase_${component}_LIBRARY}'")
     endif()
+
+    
 
 endforeach()
 
