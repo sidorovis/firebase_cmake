@@ -29,6 +29,8 @@ OR.
 
 Usage examples from your CMake code:
 
-> set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/firebase_cmake")
-> find_package(firebase QUIET REQUIRED COMPONENTS app analytics)
-> target_link_libraries(${project_name} firebase)
+```
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/firebase_cmake")
+find_package(firebase QUIET REQUIRED COMPONENTS app analytics)
+target_link_libraries(${project_name} firebase)
+```
