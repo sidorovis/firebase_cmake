@@ -83,7 +83,7 @@ if (firebase_FIND_DEBUG)
     message(STATUS "[DEBUG]: Actual components list (after dependencies resolve): ${firebase_FIND_COMPONENTS}")
 endif()
 
-# path search
+# paths search
 
 foreach(component ${firebase_FIND_COMPONENTS})
     list(FIND components "${component}" we_should_find_${component})
@@ -131,10 +131,13 @@ foreach(component ${firebase_FIND_COMPONENTS})
     endif()
 
     if (firebase_${component}_INCLUDE_DIRS AND firebase_${component}_LIBRARIES)
-	set(firebase_INCLUDE_DIRS ${firebase_INCLUDE_DIRS} firebase_${component}_INCLUDE_DIRS)
-	set(firebase_INCLUDE_DIRS ${firebase_INCLUDE_DIRS} firebase_${component}_INCLUDE_DIRS)
+	set(firebase_INCLUDE_DIRS ${firebase_INCLUDE_DIRS} ${firebase_${component}_INCLUDE_DIRS})
+	set(firebase_LIBRARIES ${firebase_LIBRARIES} ${firebase_${component}_LIBRARIES})
 	set(firebase_${component}_FOUND TRUE)
     endif()
 
 endforeach()
+
+list(REMOVE_DUPLICATES firebase_INCLUDE_DIRS)
+list(REMOVE_DUPLICATES firebase_LIBRARIES)
 
