@@ -40,7 +40,7 @@ if (firebase_FIND_DEBUG)
     message(STATUS "[DEBUG]: We will look for firebase sdk at ${firebase_root} path")
 endif()
 
-set(firebase_FOUND FALSE)
+set(firebase_FOUND TRUE)
 set(firebase_INCLUDE_DIRS "")
 set(firebase_LIBRARIES "")
 
@@ -107,7 +107,7 @@ foreach(component ${firebase_FIND_COMPONENTS})
 		NAMES "${component}.h"
 		HINTS "${firebase_root}/include/firebase")
 
-    find_library(firebase_${component}_LIBRARY
+    find_library(firebase_${component}_LIBRARIES
 		NAMES "${component}"
 		HINTS "${firebase_LIBRARIES_FOLDER}")
 
@@ -116,7 +116,25 @@ foreach(component ${firebase_FIND_COMPONENTS})
 	message(STATUS "Firebase ${component} libraries: '${firebase_${component}_LIBRARY}'")
     endif()
 
-    
+    if (NOT firebase_${component}_INCLUDE_DIRS)
+	if (firebase_FIND_REQUIRED)
+	    message(FATAL_ERROR "Firebase ${component} component header was not found")
+	endif()
+	set(firebase_FOUND FALSE)
+    endif()
+
+    if (NOT firebase_${component}_LIBRARIES)
+	if (firebase_FIND_REQUIRED)
+		message(FATAL_ERROR "Firebase ${component} component library was not found")
+	endif()
+	set(firebase_FOUND FALSE)
+    endif()
+
+    if (firebase_${component}_INCLUDE_DIRS AND firebase_${component}_LIBRARIES)
+	set(firebase_INCLUDE_DIRS ${firebase_INCLUDE_DIRS} firebase_${component}_INCLUDE_DIRS)
+	set(firebase_INCLUDE_DIRS ${firebase_INCLUDE_DIRS} firebase_${component}_INCLUDE_DIRS)
+	set(firebase_${component}_FOUND TRUE)
+    endif()
 
 endforeach()
 

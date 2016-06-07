@@ -28,7 +28,6 @@ OR.
 2. analytics
 
 Usage examples from your CMake code:
-
 ```
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/firebase_cmake")
 find_package(firebase QUIET REQUIRED COMPONENTS app analytics)
