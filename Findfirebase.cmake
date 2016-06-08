@@ -57,8 +57,10 @@ endif()
 
 set(firebase_LIBRARIES_FOLDER folder-NOTFOUND)
 
-if(UNIX AND NOT APPLE AND NOT CYGWIN)
-    set(firebase_LIBRARIES_FOLDER "${firebase_root}/libs/linux")
+if(UNIX AND NOT APPLE AND NOT CYGWIN AND NOT ANDROID)
+    set(firebase_LIBRARIES_FOLDER "${firebase_root}/libs/linux/")
+elseif(ANDROID AND ${ANDROID_ABI} STREQUAL "armeabi-v7a")
+    set(firebase_LIBRARIES_FOLDER "${firebase_root}/libs/android/armeabi-v7a/c++/")
 else()
     message(FATAL_ERROR "Not supported (yet) architecture / operation system / compiler")
 endif()
@@ -113,7 +115,7 @@ foreach(component ${firebase_FIND_COMPONENTS})
 
     if (NOT firebase_FIND_QUIETLY)
 	message(STATUS "Firebase ${component} header path: '${firebase_${component}_INCLUDE_DIRS}'")
-	message(STATUS "Firebase ${component} libraries: '${firebase_${component}_LIBRARY}'")
+	message(STATUS "Firebase ${component} libraries: '${firebase_${component}_LIBRARIES}'")
     endif()
 
     if (NOT firebase_${component}_INCLUDE_DIRS)
